@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dc3a300-7465-43e8-b8b9-ce7c2d3f4d70" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/golden/project/repositories/BusinessRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/golden/project/repositories/BusinessRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/golden/project/implementations/QueryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/golden/project/services/QueryImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
