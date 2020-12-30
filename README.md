@@ -3,19 +3,11 @@
 #### Docker for PostgreSQL
 This is much easier to work with and maintain than running Postgres on bare metal. Install docker with apt.
 
-    sudo apt-get install \                                                  
-        apt-transport-https \
-        ca-certificates \
-        curl \
-        gnupg-agent \
-        software-properties-common
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-    sudo add-apt-repository \                                                   
-        "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-        $(lsb_release -cs) \
-        stable"
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
     sudo apt update
 
@@ -35,7 +27,13 @@ Test if it is working.
 
 Installing PSQL
 
-    sudo apt install postgres
+    sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+    
+    curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+    sudo apt upgrade
+
+    sudo apt-get -y install postgresql
 
 #### Create docker network
 
@@ -50,7 +48,7 @@ Create your postgres docker container in your dev folder. Note you cannot use ba
         -p 5432:5432 \
         -e POSTGRES_DB=postgres \
         -e POSTGRES_USER=postgres \
-        -v /<ABSOLUTE PATH OUTSIDE CODE REPO>/.volumes/postgres:/var/lib/postgresql/data postgres:12.1-alpine \
+        -v /home/haka6127/.volumes/postgres:/var/lib/postgresql/data postgres:12.1-alpine \
         postgres \
         -c log_statement=all \
         -c log_destination=stderr
