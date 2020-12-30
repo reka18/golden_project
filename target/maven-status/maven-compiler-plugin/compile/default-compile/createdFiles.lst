@@ -2,8 +2,8 @@ com/golden/project/enums/ModeEnum.class
 com/golden/project/repositories/NeighborhoodRepository.class
 com/golden/project/pojos/PointResponse$PointResponseBuilder.class
 com/golden/project/pojos/BusinessResponse$BusinessResponseBuilder.class
-com/golden/project/controllers/QueryController.class
 com/golden/project/services/QueryService.class
+com/golden/project/controllers/QueryController.class
 com/golden/project/services/QueryImpl.class
 com/golden/project/repositories/BusinessRepository.class
 com/golden/project/ProjectApplication.class
