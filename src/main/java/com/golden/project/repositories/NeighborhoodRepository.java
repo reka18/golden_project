@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NeighborhoodRepository extends JpaRepository<Neighborhood, Integer>
 {
-    @Query(value = "SELECT name FROM neighborhoods;", nativeQuery = true)
+    @Query(nativeQuery = true, value =
+        "SELECT name FROM neighborhoods;")
     List<String> findAllNeighborhoods();
 }

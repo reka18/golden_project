@@ -11,25 +11,25 @@ import org.springframework.stereotype.Repository;
 public interface BusinessRepository extends JpaRepository<Business, Integer>
 {
     @Query(nativeQuery = true, value =
-        "select name, street_address || ' San Francisco, CA'\n" +
+        "select b.name, street_address || ' San Francisco, CA'\n" +
             "from businesses b\n" +
-            "where neighborhood_id = (select id from neighborhoods n where n.name = :neighborhood)\n" +
-            "and location_end is null\n" +
+            "inner join neighborhoods n on n.id = b.neighborhood_id and n.name = b.neighborhood_name\n" +
+            "where n.name = :neighborhood and location_end is null\n" +
             "order by location_start\n" +
             "limit 100;")
     List<Object[]> findTopHundredOldestRunningBusinessesByNeighborhoodAsc(
         @Param("neighborhood") String neighborhood);
 
+
     @Query(nativeQuery = true, value =
-        "select name, street_address || ' San Francisco, CA'\n" +
+        "select b.name, street_address || ' San Francisco, CA'\n" +
             "from businesses b\n" +
-            "where neighborhood_id = (select id from neighborhoods n where n.name = :neighborhood)\n" +
-            "and location_end is null\n" +
+            "         inner join neighborhoods n on n.id = b.neighborhood_id and n.name = b.neighborhood_name\n" +
+            "where n.name = :neighborhood and location_end is null\n" +
             "order by location_start DESC\n" +
             "limit 100;")
     List<Object[]> findTopHundredOldestRunningBusinessesByNeighborhoodDesc(
         @Param("neighborhood") String neighborhood);
-
 
 
     @Query(nativeQuery = true, value =
@@ -37,6 +37,8 @@ public interface BusinessRepository extends JpaRepository<Business, Integer>
             "        || text(((float8(maxy) - float8(miny)) / 2) + float8(miny)) as center\n" +
             "from (select max(split_part(coordinates, ',', 1)) as maxx, min(split_part(coordinates, ',', 1)) as minx,\n" +
             "          max(split_part(coordinates, ',', 2)) as maxy, min(split_part(coordinates, ',', 2)) as miny\n" +
-            "      from businesses where neighborhood_id = (select id from neighborhoods where name = :neighborhood)) p1;")
+            "      from businesses b\n" +
+            "               inner join neighborhoods n on n.id = b.neighborhood_id and n.name = b.neighborhood_name\n" +
+            "      where n.name = :neighborhood) p1;")
     String findByNeighborhoodName(@Param("neighborhood") String neighborhood);
 }
