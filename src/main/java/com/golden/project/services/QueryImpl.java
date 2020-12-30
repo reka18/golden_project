@@ -67,7 +67,7 @@ public class QueryImpl implements QueryService
             default:
                 throw new IllegalStateException();
         }
-        log.info("Serving requested list of top 100 {} operating businesses in {}", mode.getName(), neighborhood);
+        log.info("Serving requested list of top {} {} operating businesses in {}", count, mode.getName(), neighborhood);
         Map<String, Map<String, String>> bizMap = new HashMap<>(businesses.size());
         businesses.forEach(
             b -> {
@@ -77,7 +77,7 @@ public class QueryImpl implements QueryService
                 bizMap.put(String.valueOf(b[0]), details);
             }
         );
-        String message = String.format("These are the top 100 %s still operating businesses in %s", mode.getName(), neighborhood);
+        String message = String.format("These are the top %s %s still operating businesses in %s", count, mode.getName(), neighborhood);
         BusinessResponse response = BusinessResponse.builder()
             .message(message)
             .businesses(bizMap)

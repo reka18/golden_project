@@ -46,7 +46,7 @@ public class QueryController
         @RequestParam("mode") String mode,
         @RequestParam("count") Integer count) throws ExecutionException, InterruptedException
     {
-        log.info("Requesting top 100 oldest businesses in {}", neighborhood);
+        log.info("Requesting top {} oldest businesses in {}", count, neighborhood);
         ModeEnum modeEnum = ModeEnum.getInstanceByName(mode);
         return queryService.fetchTopHundredOldestRunningBusinessesByNeighborhood(neighborhood, modeEnum, count).get();
     }

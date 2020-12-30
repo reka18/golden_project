@@ -21,7 +21,7 @@ This is much easier to work with and maintain than running Postgres on bare meta
 
     sudo apt install docker-ce docker-ce-cli containerd.io
 
-Let's get rid of the need to sudo with docker.
+Get rid of the need to sudo with docker.
 
     sudo groupadd docker
 
@@ -29,7 +29,7 @@ Let's get rid of the need to sudo with docker.
 
 Log out and back in for the group change to take effect.
 
-Now test if it is working.
+Test if it is working.
 
     docker run hello-world
 
@@ -37,7 +37,11 @@ Installing PSQL
 
     sudo apt install postgres
 
-Configuring PostgreSQL Docker Container (Linux/MacOS)
+#### Create docker network
+
+    docker network create golden;
+
+#### Configuring PostgreSQL Docker Container (Linux/MacOS)
 Create your postgres docker container in your dev folder. Note you cannot use bash variables in the absolute path, i.e. ${HOME} will not work
 
     docker run -dit \
@@ -46,22 +50,37 @@ Create your postgres docker container in your dev folder. Note you cannot use ba
         -p 5432:5432 \
         -e POSTGRES_DB=postgres \
         -e POSTGRES_USER=postgres \
-        -v /Users/rkmac/Projects/.volumes/postgres:/var/lib/postgresql/data postgres:12.1-alpine \
+        -v /<ABSOLUTE PATH OUTSIDE CODE REPO>/.volumes/postgres:/var/lib/postgresql/data postgres:12.1-alpine \
         postgres \
         -c log_statement=all \
         -c log_destination=stderr
 
-Now you should be inside the container postgres. Let's initialize the database
+Initialize database:
 
-    cat init.sql| docker exec -i 9a3abbadf096ba91a8412d1e707bb263132bc7d4b822e77ab4b89bc1f0430bf4 psql -U postgres -d postgres
+    cat init.sql | docker exec -i <CONTAINER> psql -U postgres -d postgres
 
-Now lets build and run the backend application
+Import data into database:
+
+    pip install -r requirements.txt
+
+    python database_upload.py
+
+Import metrics:
+
+    .
+    .
+    .
+    Processing 438 of 438 batch(es)
+    Finished inserting 218604 rows in 84.28082728385925 seconds
+    2593.757169275736 per second inserted
+
+#### Build and run the SpringBoot Application
     
     mvn clean package -U
 
     docker build --build-arg 'target/*.jar' -t golden/golden .
 
-Note if you get a free() pointer error when running the above run the following as sudo and try again
+Note, if you get a free() pointer error when running the above run the following as sudo and try again
     
     cd ${HOME}
     wget https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-secretservice-v0.6.3-amd64.tar.gz
@@ -70,9 +89,9 @@ Note if you get a free() pointer error when running the above run the following 
     mv /usr/bin/docker-credential-secretservice /usr/bin/docker-credential-secretservice.bkp
     mv docker-credential-secretservice /usr/bin/
 
-    docker run -it --rm --name golden_app --network host golden/golden
+    docker run -dit --rm --name golden_app --network host golden/golden
 
-And finally lets setup local NGINX
+#### Setup local NGINX
 
     sudo apt install nginx
 
