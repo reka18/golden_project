@@ -51,7 +51,7 @@ def _run_query(value_tuples_list, i, total):
             'on conflict (name) do update set name = excluded.name returning id, name) ' \
             'insert into businesses(neighborhood_id, neighborhood_name, name, street_address, location_start, location_end, coordinates) ' \
             'values ((select id from neighborhood), (select name from neighborhood), %(biz_name)s, %(street)s, date(%(loc_start)s), ' \
-            'case when %(loc_end)s = \'0001-01-01\' then null else date(%(loc_end)s) end, point(%(coord)s)) on conflict do nothing;'
+            'case when %(loc_end)s = \'0001-01-01\' then null else date(%(loc_end)s) end, %(coord)s) on conflict do nothing;'
     conn, cur = _get_connection()
 
     # faster that normal execute
@@ -110,8 +110,7 @@ def _load_csv(path):
             return SAN_FRAN
 
     def _extract_point(text):
-        text = text.replace('POINT (', '').replace(')', '').split(' ')
-        text = f'{text[1]},{text[0]}'
+        text = text.replace('POINT (', '').replace(')', '').replace(' ', ',')
         return text
 
     df = pd.read_csv(path)
