@@ -68,9 +68,14 @@ public class QueryImpl implements QueryService
                 throw new IllegalStateException();
         }
         log.info("Serving requested list of top 100 {} operating businesses in {}", mode.getName(), neighborhood);
-        Map<String, String> bizMap = new HashMap<>(businesses.size());
+        Map<String, Map<String, String>> bizMap = new HashMap<>(businesses.size());
         businesses.forEach(
-            b -> bizMap.put(String.valueOf(b[0]), String.valueOf(b[1]))
+            b -> {
+                Map<String, String> details = new HashMap<>(2);
+                details.put("address", String.valueOf(b[1]));
+                details.put("start_date", String.valueOf(b[2]));
+                bizMap.put(String.valueOf(b[0]), details);
+            }
         );
         String message = String.format("These are the top 100 %s still operating businesses in %s", mode.getName(), neighborhood);
         BusinessResponse response = BusinessResponse.builder()

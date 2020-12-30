@@ -10,5 +10,5 @@ import lombok.Getter;
 public class BusinessResponse implements Serializable
 {
     private final String message;
-    private final Map<String, String> businesses;
+    private final Map<String, Map<String, String>> businesses;
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface BusinessRepository extends JpaRepository<Business, Integer>
 {
     @Query(nativeQuery = true, value =
-        "select b.name, street_address || ' San Francisco, CA'\n" +
+        "select b.name, street_address || ' San Francisco, CA', location_start\n" +
             "from businesses b\n" +
             "inner join neighborhoods n on n.id = b.neighborhood_id and n.name = b.neighborhood_name\n" +
             "where n.name = :neighborhood and location_end is null\n" +
@@ -22,7 +22,7 @@ public interface BusinessRepository extends JpaRepository<Business, Integer>
 
 
     @Query(nativeQuery = true, value =
-        "select b.name, street_address || ' San Francisco, CA'\n" +
+        "select b.name, street_address || ' San Francisco, CA', location_start\n" +
             "from businesses b\n" +
             "         inner join neighborhoods n on n.id = b.neighborhood_id and n.name = b.neighborhood_name\n" +
             "where n.name = :neighborhood and location_end is null\n" +
