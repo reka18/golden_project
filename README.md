@@ -70,8 +70,30 @@ Note if you get a free() pointer error when running the above run the following 
     mv /usr/bin/docker-credential-secretservice /usr/bin/docker-credential-secretservice.bkp
     mv docker-credential-secretservice /usr/bin/
 
-    docker run -it --name golden_app --network golden golden/golden -p 8080:8080 
+    docker run -it --rm --name golden_app --network host golden/golden
 
-And finally lets setup an NGINX container so we can access the api from the outside world
+And finally lets setup local NGINX
 
-    docker run -it --rm -d -p 8080:80 --name web --network golden nginx
+    sudo apt install nginx
+
+    sudo vim /etc/nginx/nginx.conf
+
+Ensure the following are added to the config under the existing headings
+
+    .
+    .
+    .
+    server {
+        listen 80;
+        .
+        .
+        .
+        location / {
+            proxy_pass http://localhost:8080;
+        .
+        .
+        .
+    
+And restart NGINX
+    
+    sudo nginx -s reload
