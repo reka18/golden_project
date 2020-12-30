@@ -40,13 +40,13 @@ Installing PSQL
 Configuring PostgreSQL Docker Container (Linux/MacOS)
 Create your postgres docker container in your dev folder. Note you cannot use bash variables in the absolute path, i.e. ${HOME} will not work
 
-    docker run -d -it \
-        --network host \
+    docker run -dit \
         --name postgres \
+        --network golden \
         -p 5432:5432 \
         -e POSTGRES_DB=postgres \
         -e POSTGRES_USER=postgres \
-        -v <ABSOLUTE PATH TO DESIRED LOCATION>/.volumes/postgres:/var/lib/postgresql/data postgres:12.1-alpine \
+        -v /Users/rkmac/Projects/.volumes/postgres:/var/lib/postgresql/data postgres:12.1-alpine \
         postgres \
         -c log_statement=all \
         -c log_destination=stderr
