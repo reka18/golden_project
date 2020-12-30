@@ -55,9 +55,25 @@ Create your postgres docker container in your dev folder. Note you cannot use ba
 
 Initialize database:
 
-    cat init.sql | docker exec -i <CONTAINER> psql -U postgres -d postgres
+    cat init.sql | docker exec -i e5629c93da80 psql -U postgres -d postgres
 
-Import data into database:
+Setup Python env:
+
+    sudo apt install python3-pip
+
+    sudo apt install direnv
+
+    apt-get install python3-venv
+
+Add the following to `.bashrc` and reload shell:
+
+    eval "$(direnv hook bash)"
+
+Back out of repo root and go back in. Install python dependencies and import data:
+
+    direnv allow
+
+    pip3 install --upgrade pip
 
     pip install -r requirements.txt
 
