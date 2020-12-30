@@ -6,7 +6,6 @@ import com.golden.project.pojos.NeighborhoodResponse;
 import com.golden.project.pojos.PointResponse;
 import com.golden.project.repositories.BusinessRepository;
 import com.golden.project.repositories.NeighborhoodRepository;
-import com.golden.project.services.QueryService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
