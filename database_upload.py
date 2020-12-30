@@ -142,3 +142,5 @@ if __name__ == '__main__':
     end = time.time()
     total_time = end - start
     print(f'Finished inserting {total_rows} rows in {total_time} seconds')
+    rows_per_sec = total_rows / total_time
+    print(f'{rows_per_sec} per second inserted')
