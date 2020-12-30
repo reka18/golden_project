@@ -63,7 +63,7 @@ def _run_query(value_tuples_list, i, total):
 def import_data(path):
     data = _load_csv(path)
     print('Total rows: {}'.format(len(data)))
-    chunk_size = 500
+    chunk_size = 1000
     data_chunks = [data[i:i + chunk_size] for i in range(0, data.shape[0], chunk_size)]
     total = len(data_chunks)
 
@@ -140,7 +140,7 @@ if __name__ == '__main__':
     start = time.time()
     total_rows = import_data('Registered_Business_Locations_-_San_Francisco.csv')
     end = time.time()
-    total_time = end - start
+    total_time = round(end - start, 2)
     print(f'Finished inserting {total_rows} rows in {total_time} seconds')
-    rows_per_sec = total_rows / total_time
+    rows_per_sec = round(total_rows / total_time, 2)
     print(f'{rows_per_sec} per second inserted')

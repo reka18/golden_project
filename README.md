@@ -70,9 +70,9 @@ Import metrics:
     .
     .
     .
-    Processing 438 of 438 batch(es)
-    Finished inserting 218604 rows in 84.28082728385925 seconds
-    2593.757169275736 per second inserted
+    Processing 219 of 219 batch(es)
+    Finished inserting 218604 rows in 81.87748599052429 seconds
+    2669.8914525208934 per second inserted
 
 #### Build and run the SpringBoot Application
     
