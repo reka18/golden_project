@@ -51,20 +51,27 @@ Create your postgres docker container in your dev folder. Note you cannot use ba
         -c log_statement=all \
         -c log_destination=stderr
 
-This last command should give you a container id. Use it below.
+Now you should be inside the container postgres. Let's initialize the database
 
-    docker exec -it <CONTAINER ID> bash
+    cat init.sql| docker exec -i 9a3abbadf096ba91a8412d1e707bb263132bc7d4b822e77ab4b89bc1f0430bf4 psql -U postgres -d postgres
 
-Now you should be inside the container.
+Now lets build and run the backend application
+    
+    mvn clean package -U
 
-    psql -U postgres
+    docker build --build-arg 'target/*.jar' -t golden/golden .
 
-Now you should be inside the container postgres. Let's set up the necessary users here.
+Note if you get a free() pointer error when running the above run the following as sudo and try again
+    
+    cd ${HOME}
+    wget https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-secretservice-v0.6.3-amd64.tar.gz
+    tar -xf docker-credential-secretservice-v0.6.3-amd64.tar.gz
+    chmod +x docker-credential-secretservice
+    mv /usr/bin/docker-credential-secretservice /usr/bin/docker-credential-secretservice.bkp
+    mv docker-credential-secretservice /usr/bin/
 
-    create user golden_user createdb;
-    alter user golden_user with superuser;
-    create database golden;
-    \c gitprime;
-    grant all privileges on all tables in schema public to golden_user;
-    \q
-    exit
+    docker run -it --name golden_app --network golden golden/golden -p 8080:8080 
+
+And finally lets setup an NGINX container so we can access the api from the outside world
+
+    docker run -it --rm -d -p 8080:80 --name web --network golden nginx
