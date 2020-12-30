@@ -39,15 +39,16 @@ public class QueryController
 
     @RequestMapping(
         method = RequestMethod.GET,
-        path = "/top-100",
+        path = "/top",
         produces = MediaType.APPLICATION_JSON_VALUE)
     public BusinessResponse getTopHundredOldest(
         @RequestParam("neighborhood") String neighborhood,
-        @RequestParam("mode") String mode) throws ExecutionException, InterruptedException
+        @RequestParam("mode") String mode,
+        @RequestParam("count") Integer count) throws ExecutionException, InterruptedException
     {
         log.info("Requesting top 100 oldest businesses in {}", neighborhood);
         ModeEnum modeEnum = ModeEnum.getInstanceByName(mode);
-        return queryService.fetchTopHundredOldestRunningBusinessesByNeighborhood(neighborhood, modeEnum).get();
+        return queryService.fetchTopHundredOldestRunningBusinessesByNeighborhood(neighborhood, modeEnum, count).get();
     }
 
     @RequestMapping(

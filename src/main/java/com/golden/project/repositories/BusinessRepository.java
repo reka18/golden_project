@@ -16,9 +16,9 @@ public interface BusinessRepository extends JpaRepository<Business, Integer>
             "inner join neighborhoods n on n.id = b.neighborhood_id and n.name = b.neighborhood_name\n" +
             "where n.name = :neighborhood and location_end is null\n" +
             "order by location_start\n" +
-            "limit 100;")
+            "limit :count")
     List<Object[]> findTopHundredOldestRunningBusinessesByNeighborhoodAsc(
-        @Param("neighborhood") String neighborhood);
+        @Param("neighborhood") String neighborhood, @Param("count")  Integer count);
 
 
     @Query(nativeQuery = true, value =
@@ -27,9 +27,9 @@ public interface BusinessRepository extends JpaRepository<Business, Integer>
             "         inner join neighborhoods n on n.id = b.neighborhood_id and n.name = b.neighborhood_name\n" +
             "where n.name = :neighborhood and location_end is null\n" +
             "order by location_start DESC\n" +
-            "limit 100;")
+            "limit :count")
     List<Object[]> findTopHundredOldestRunningBusinessesByNeighborhoodDesc(
-        @Param("neighborhood") String neighborhood);
+        @Param("neighborhood") String neighborhood, @Param("count")  Integer count);
 
 
     @Query(nativeQuery = true, value =

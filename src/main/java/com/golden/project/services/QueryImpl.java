@@ -52,17 +52,17 @@ public class QueryImpl implements QueryService
 
     @Override
     public CompletableFuture<BusinessResponse> fetchTopHundredOldestRunningBusinessesByNeighborhood(
-        String neighborhood, ModeEnum mode)
+        String neighborhood, ModeEnum mode, Integer count)
     {
         List<Object[]> businesses;
         CompletableFuture<BusinessResponse> result = new CompletableFuture<>();
         switch (mode)
         {
             case OLDEST:
-                businesses = businessRepository.findTopHundredOldestRunningBusinessesByNeighborhoodAsc(neighborhood);
+                businesses = businessRepository.findTopHundredOldestRunningBusinessesByNeighborhoodAsc(neighborhood, count);
                 break;
             case NEWEST:
-                businesses = businessRepository.findTopHundredOldestRunningBusinessesByNeighborhoodDesc(neighborhood);
+                businesses = businessRepository.findTopHundredOldestRunningBusinessesByNeighborhoodDesc(neighborhood, count);
                 break;
             default:
                 throw new IllegalStateException();

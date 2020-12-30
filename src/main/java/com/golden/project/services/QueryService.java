@@ -13,7 +13,7 @@ public interface QueryService
     CompletableFuture<NeighborhoodResponse> fetchNeighborhoodsWithBusinessLocationRecords();
 
     CompletableFuture<BusinessResponse> fetchTopHundredOldestRunningBusinessesByNeighborhood(
-        String neighborhood, ModeEnum mode);
+        String neighborhood, ModeEnum mode, Integer count);
 
     CompletableFuture<PointResponse> fetchGeographicCenterOfNeighborhood(String neighborhood);
 }
