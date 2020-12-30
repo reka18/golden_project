@@ -4,8 +4,8 @@
 /Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/repositories/entities/Business.java
 /Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/pojos/PointResponse.java
 /Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/services/QueryService.java
-/Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/implementations/QueryImpl.java
 /Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/pojos/BusinessResponse.java
+/Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/services/QueryImpl.java
 /Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/pojos/NeighborhoodResponse.java
 /Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/ProjectApplication.java
 /Users/rkmac/Projects/Golden/golden_project/src/main/java/com/golden/project/enums/ModeEnum.java
