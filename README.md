@@ -81,6 +81,8 @@ Back out of repo root and go back in. Install python dependencies and import dat
 
     python database_upload.py
 
+    cat optimize.sql | docker exec -i e5629c93da80 psql -U postgres -d postgres
+
 Import metrics:
 
     .
@@ -95,7 +97,6 @@ Import metrics:
     https://adoptopenjdk.net/installation.html#linux-pkg
 
     sudo apt-get install adoptopenjdk-11-hotspot
-
 
 #### Build and run the SpringBoot Application
     
@@ -148,11 +149,13 @@ Get all the neighborhoods here:
     http://35.202.71.208/neighborhoods
 
 For neighborhood parameter use case insensitive neighborhood names. Mode is a case insensitive choice between `oldest`
-and `newest`. Count is simply the number of elements you want returned. 100 was asked for specifically but I added dial.
+and `newest`. Count is simply the number of elements you want returned. 100 was asked for specifically but I added dial:
 
     http://35.202.71.208/top?neighborhood=MISSION&mode=oldest&count=100
 
     http://35.202.71.208/top?neighborhood=MISSION&mode=newest&count=100
+
+For the central geographic point of the passed it case insensitive neighborhood:
 
     http://35.202.71.208/neighborhood-geographic-center?neighborhood=MISSION
 
