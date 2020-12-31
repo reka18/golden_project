@@ -12,8 +12,10 @@ public interface QueryService
     @Async
     CompletableFuture<NeighborhoodResponse> fetchNeighborhoodsWithBusinessLocationRecords();
 
+    @Async
     CompletableFuture<BusinessResponse> fetchTopHundredOldestRunningBusinessesByNeighborhood(
         String neighborhood, ModeEnum mode, Integer count);
 
+    @Async
     CompletableFuture<PointResponse> fetchGeographicCenterOfNeighborhood(String neighborhood);
 }
