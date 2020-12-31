@@ -60,6 +60,6 @@ public class QueryController
         @RequestParam("neighborhood") String neighborhood) throws ExecutionException, InterruptedException
     {
         log.info("Requesting geographic center of {}", neighborhood);
-        return queryService.fetchGeographicCenterOfNeighborhood(neighborhood).get();
+        return queryService.fetchGeographicCenterOfNeighborhood(neighborhood.toUpperCase()).get();
     }
 }
