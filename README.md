@@ -1,5 +1,7 @@
 # Golden Project
 
+## Installation & Deployment
+
 #### Docker for PostgreSQL
 This is much easier to work with and maintain than running Postgres on bare metal. Install docker with apt.
 
@@ -85,8 +87,15 @@ Import metrics:
     .
     .
     Processing 219 of 219 batch(es)
-    Finished inserting 218604 rows in 81.87748599052429 seconds
-    2669.8914525208934 per second inserted
+    Finished inserting 218604 rows in 81.87 seconds
+    2669.89 per second inserted
+
+#### Install Java & Maven
+
+    https://adoptopenjdk.net/installation.html#linux-pkg
+
+    sudo apt-get install adoptopenjdk-11-hotspot
+
 
 #### Build and run the SpringBoot Application
     
@@ -111,7 +120,8 @@ Note, if you get a free() pointer error when running the above run the following
 
     sudo vim /etc/nginx/nginx.conf
 
-Ensure the following are added to the config under the existing headings
+Ensure the following are added to the config under the existing headings. Make sure your nginx.conf file is exactly this one
+https://github.com/nginx/nginx/blob/master/conf/nginx.conf
 
     .
     .
@@ -130,3 +140,16 @@ Ensure the following are added to the config under the existing headings
 And restart NGINX
     
     sudo nginx -s reload
+
+## Usage
+
+Get all the neighborhoods here:
+
+    http://35.202.71.208/neighborhoods
+
+For neighborhood parameter use 
+
+    http://35.202.71.208/top?neighborhood=MISSION&mode=oldest&count=100
+
+    http://35.202.71.208/top?neighborhood=MISSION&mode=newest&count=100
+
