@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dc3a300-7465-43e8-b8b9-ce7c2d3f4d70" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/ProjectApplication.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/golden_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/golden_project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_upload.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_upload.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +67,7 @@
       <command value="mvn clean compile -U" />
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ProjectApplication">
+  <component name="RunManager" selected="Python.database_upload">
     <configuration name="database_upload" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="golden_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,7 +105,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.ProjectApplication" />
+      <item itemvalue="Python.database_upload" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -121,6 +120,7 @@
       <workItem from="1609313893994" duration="193000" />
       <workItem from="1609314094825" duration="509000" />
       <workItem from="1609368187414" duration="288000" />
+      <workItem from="1611261520724" duration="1578000" />
     </task>
     <servers />
   </component>

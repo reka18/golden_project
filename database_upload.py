@@ -53,7 +53,6 @@ def _run_query(value_tuples_list, i, total):
             'values ((select id from neighborhood), (select name from neighborhood), %(biz_name)s, %(street)s, date(%(loc_start)s), ' \
             'case when %(loc_end)s = \'0001-01-01\' then null else date(%(loc_end)s) end, %(coord)s) on conflict do nothing;'
     conn, cur = _get_connection()
-
     # faster that normal execute
     extras.execute_batch(cur, query, value_tuples_list)
     _commit_connection(conn, cur)
